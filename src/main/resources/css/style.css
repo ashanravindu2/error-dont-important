@@ -4,3 +4,10 @@
 .btn2{
     -fx-background-color: #706fd3;
 }
+
+.client:hover{
+    -fx-background-color: rgba(112, 111, 211, 0.68);
+}
+.client2{
+    -fx-background-color: rgba(112, 111, 211, 0.46);
+}
