@@ -9,11 +9,11 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="231.0" prefWidth="600.0" style="-fx-background-color: #d1ccc0;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.logInController">
+<AnchorPane prefHeight="231.0" prefWidth="600.0" style="-fx-background-color: #d1ccc0;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.LogInController">
    <children>
       <ImageView fitHeight="60.0" fitWidth="51.0" layoutX="275.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="C:\Users\ravin\Downloads\icons8-male-user-100.png" />
+            <Image url="/assets/icons8-male-user-100.png" />
          </image>
       </ImageView>
       <TextField fx:id="txtUserName" layoutX="100.0" layoutY="131.0" prefHeight="25.0" prefWidth="249.0" promptText="User Name" AnchorPane.leftAnchor="100.0" />
