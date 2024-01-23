@@ -3,28 +3,29 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import java.lang.String?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-
-<AnchorPane prefHeight="231.0" prefWidth="600.0" style="-fx-background-color: #d1ccc0;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.LogInController">
+<AnchorPane prefHeight="457.0" prefWidth="336.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.LogInController">
    <children>
-      <ImageView fitHeight="60.0" fitWidth="51.0" layoutX="275.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="/assets/icons8-male-user-100.png" />
-         </image>
-      </ImageView>
-      <TextField fx:id="txtUserName" layoutX="100.0" layoutY="131.0" prefHeight="25.0" prefWidth="249.0" promptText="User Name" AnchorPane.leftAnchor="100.0" />
-      <JFXButton buttonType="RAISED" layoutX="408.0" layoutY="131.0" onAction="#btnLogInAction" prefHeight="25.0" prefWidth="94.0" ripplerFill="#706fd3" stylesheets="@../css/style.css" text="Log In" textFill="WHITE" AnchorPane.rightAnchor="100.0">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
+      <AnchorPane fx:id="pane" prefHeight="457.0" prefWidth="336.0" />
+      <TextField fx:id="txtUserName" layoutX="45.0" layoutY="200.0" prefHeight="27.0" prefWidth="237.0" />
+      <JFXButton fx:id="logBtn" layoutX="45.0" layoutY="337.0" onAction="#btnLogInAction" prefHeight="36.0" prefWidth="237.0" stylesheets="@../css/style.css" text="Join" textFill="WHITE">
          <styleClass>
             <String fx:value="btn" />
             <String fx:value="btn2" />
          </styleClass>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
       </JFXButton>
+      <TextField fx:id="txtPass" layoutX="45.0" layoutY="257.0" prefHeight="27.0" prefWidth="237.0" />
+      <Text layoutX="80.0" layoutY="417.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Don't have an account?" />
+      <Text fill="#004dff" layoutX="210.0" layoutY="417.0" onMouseClicked="#getRegisterPageAction" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign Up">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
