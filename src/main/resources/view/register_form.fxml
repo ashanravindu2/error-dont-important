@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import java.lang.String?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="457.0" prefWidth="336.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.RegisterController">
+   <children>
+      <AnchorPane fx:id="pane" layoutY="-1.0" prefHeight="457.0" prefWidth="336.0" />
+      <TextField fx:id="txtUserName" layoutX="45.0" layoutY="200.0" prefHeight="27.0" prefWidth="237.0" />
+      <JFXButton fx:id="createBtn" layoutX="45.0" layoutY="337.0" onAction="#btnCreateOnAction" prefHeight="36.0" prefWidth="237.0" stylesheets="@../css/style.css" text="Create" textFill="WHITE">
+         <styleClass>
+            <String fx:value="btn" />
+            <String fx:value="btn2" />
+         </styleClass>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
+      <TextField fx:id="txtPass" layoutX="45.0" layoutY="257.0" prefHeight="27.0" prefWidth="237.0" />
+      <Text layoutX="62.0" layoutY="417.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Already have an account?" />
+      <Text fill="#004dff" layoutX="201.0" layoutY="417.0" onMouseClicked="#getLogInPageAction" strokeType="OUTSIDE" strokeWidth="0.0" text="Login here">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>
