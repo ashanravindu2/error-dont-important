@@ -10,15 +10,15 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="pane" prefHeight="495.0" prefWidth="568.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.ClientController">
+<AnchorPane fx:id="pane" prefHeight="527.0" prefWidth="587.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.ClientController">
    <children>
       <ScrollPane fx:id="scrollpain" layoutX="25.0" layoutY="28.0" prefHeight="388.0" prefWidth="535.0" AnchorPane.leftAnchor="28.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="28.0">
          <content>
-            <VBox fx:id="vBox" prefHeight="385.0" prefWidth="530.0" />
+            <VBox fx:id="vBox" prefHeight="386.0" prefWidth="529.0" />
          </content>
       </ScrollPane>
-      <TextField fx:id="txtMsg" layoutX="28.0" layoutY="432.0" onAction="#btnMsgOnAction" prefHeight="32.0" prefWidth="339.0" AnchorPane.bottomAnchor="24.0" AnchorPane.leftAnchor="28.0" AnchorPane.rightAnchor="221.0" />
-      <JFXButton layoutX="460.0" layoutY="451.0" prefHeight="32.0" prefWidth="91.0" stylesheets="@../css/style.css" text="Send" textFill="WHITE" AnchorPane.rightAnchor="28.0">
+      <TextField fx:id="txtMsg" layoutX="28.0" layoutY="460.0" onAction="#btnMsgOnAction" prefHeight="32.0" prefWidth="339.0" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="28.0" AnchorPane.rightAnchor="221.0" />
+      <JFXButton layoutX="468.0" layoutY="460.0" prefHeight="32.0" prefWidth="91.0" stylesheets="@../css/style.css" text="Send" textFill="WHITE" AnchorPane.rightAnchor="28.0">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -27,31 +27,37 @@
             <String fx:value="btn2" />
          </styleClass>
       </JFXButton>
-      <JFXButton fx:id="emojiBtn" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="412.0" layoutY="450.0" prefHeight="32.0" prefWidth="32.0" stylesheets="@../css/style.css" AnchorPane.rightAnchor="135.0">
+      <JFXButton fx:id="emojiBtn" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="420.0" layoutY="460.0" prefHeight="32.0" prefWidth="40.0" stylesheets="@../css/style.css" AnchorPane.rightAnchor="127.0">
          <graphic>
-            <ImageView fitHeight="25.0" fitWidth="25.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="C:\Users\ravin\Downloads\icons8-happy-32.png" />
-               </image>
-            </ImageView>
+
          </graphic>
          <styleClass>
             <String fx:value="client" />
             <String fx:value="client2" />
          </styleClass>
+         <graphic>
+            <ImageView fitHeight="24.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/icons8-happy-32.png" />
+               </image>
+            </ImageView>
+         </graphic>
       </JFXButton>
-      <JFXButton alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="369.0" layoutY="450.0" onAction="#btnImageAction" prefHeight="32.0" prefWidth="32.0" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="24.0" AnchorPane.leftAnchor="369.0" AnchorPane.rightAnchor="178.0" AnchorPane.topAnchor="450.0">
+      <JFXButton alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="373.0" layoutY="460.0" onAction="#btnImageAction" prefHeight="32.0" prefWidth="40.0" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="373.0" AnchorPane.rightAnchor="174.0" AnchorPane.topAnchor="460.0">
          <graphic>
-            <ImageView fitHeight="25.0" fitWidth="25.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="C:\Users\ravin\Downloads\icons8-camera-100.png" />
-               </image>
-            </ImageView>
+
          </graphic>
          <styleClass>
             <String fx:value="client" />
             <String fx:value="client2" />
          </styleClass>
+         <graphic>
+            <ImageView fitHeight="24.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/icons8-camera-100.png" />
+               </image>
+            </ImageView>
+         </graphic>
       </JFXButton>
    </children>
 </AnchorPane>
