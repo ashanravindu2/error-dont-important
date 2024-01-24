@@ -24,22 +24,27 @@ public class LogInController {
     public AnchorPane pane;
     public TextField txtPass;
     UserModel userModel = new UserModel();
-
+    ServerController serverController = new ServerController();
     public void initialize(){
 
     }
 
     public void btnLogInAction(ActionEvent actionEvent) throws IOException, SQLException {
-
+ ClientController clientController = new ClientController();
+        clientController.run();
         if (!txtUserName.getText().isEmpty()&&txtUserName.getText().matches("[A-Za-z]+")){
             boolean isValid = userModel.login(txtUserName.getText(),txtPass.getText());
             if (isValid){
+
                 Stage stage = new Stage();
                 stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/client_form.fxml"))));
                 stage.setTitle(txtUserName.getText());
                 stage.setResizable(false);
                 stage.centerOnScreen();
                 stage.getIcons().add(new javafx.scene.image.Image("assets/icons8-male-user-100.png"));
+                stage.setOnCloseRequest(windowEvent -> {
+
+                });
                 stage.show();
                 txtUserName.clear();
             }else{
