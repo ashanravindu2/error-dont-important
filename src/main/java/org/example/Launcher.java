@@ -8,6 +8,8 @@ import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.example.controller.ServerController;
+import org.example.server.Server;
 
 public class Launcher extends Application {
 
@@ -17,6 +19,7 @@ public class Launcher extends Application {
 
     @Override
     public void start(Stage s) throws Exception {
+
         Stage stage = new Stage();
         stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/logIn_form.fxml"))));
         stage.setTitle("Live Chat");

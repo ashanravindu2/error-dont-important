@@ -12,13 +12,13 @@
 
 <AnchorPane fx:id="pane" prefHeight="527.0" prefWidth="587.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.ClientController">
    <children>
-      <ScrollPane fx:id="scrollpain" layoutX="25.0" layoutY="28.0" prefHeight="388.0" prefWidth="535.0" AnchorPane.leftAnchor="28.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="28.0">
+      <ScrollPane fx:id="scrollpain" layoutX="25.0" layoutY="28.0" prefHeight="398.0" prefWidth="534.0" AnchorPane.leftAnchor="28.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="28.0">
          <content>
-            <VBox fx:id="vBox" prefHeight="386.0" prefWidth="529.0" />
+            <VBox fx:id="vBox" prefHeight="396.0" prefWidth="532.0" />
          </content>
       </ScrollPane>
-      <TextField fx:id="txtMsg" layoutX="28.0" layoutY="460.0" onAction="#btnMsgOnAction" prefHeight="32.0" prefWidth="339.0" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="28.0" AnchorPane.rightAnchor="221.0" />
-      <JFXButton layoutX="468.0" layoutY="460.0" prefHeight="32.0" prefWidth="91.0" stylesheets="@../css/style.css" text="Send" textFill="WHITE" AnchorPane.rightAnchor="28.0">
+      <TextField fx:id="txtMsg" layoutX="28.0" layoutY="460.0" prefHeight="32.0" prefWidth="339.0" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="28.0" AnchorPane.rightAnchor="221.0" />
+      <JFXButton layoutX="468.0" layoutY="460.0" onAction="#btnMsgOnAction" prefHeight="32.0" prefWidth="91.0" stylesheets="@../css/style.css" text="Send" textFill="WHITE" AnchorPane.rightAnchor="28.0">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
