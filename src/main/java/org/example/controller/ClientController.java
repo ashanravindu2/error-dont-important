@@ -2,21 +2,29 @@ package org.example.controller;
 
 import com.jfoenix.controls.JFXButton;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 import java.awt.*;
+import java.awt.event.FocusEvent;
 import java.awt.image.BufferedImage;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -26,6 +34,11 @@ import java.net.Socket;
 
 public class ClientController {
 
+    public TextField mektdhn;
+
+    private static String clientName;
+
+    public Label lblgetName ;
     @FXML
     private JFXButton emojiBtn;
 
@@ -38,6 +51,8 @@ public class ClientController {
     @FXML
     private TextField txtMsg;
 
+    private Stage stage;
+
     @FXML
     private VBox vBox;
 
@@ -48,7 +63,6 @@ public class ClientController {
 
 
     public void initialize(){
-
            new Thread(new Runnable() {
                @Override
                public void run() {
@@ -69,6 +83,7 @@ public class ClientController {
                    }
                }
            }).start();
+
     }
     @FXML
     void btnImageAction(ActionEvent event) throws IOException {
@@ -85,23 +100,38 @@ public class ClientController {
     @FXML
     void btnMsgOnAction(ActionEvent event) throws IOException {
         String msg = txtMsg.getText();
-       // System.out.println("Message : "+msg);
+
         send(msg);
     }
     public void send(String msg) throws IOException {
+        System.out.println(clientName);
+        if (!msg.isEmpty()) {
+            HBox hBox = new HBox();
+            hBox.setPadding(new Insets(5,6,5,10));
 
-        vBox.getChildren().add(new Text(msg));
+            Text text = new Text(msg);
+            text.setStyle("-fx-background-color: #ffffff;-fx-font-size: 12px;-fx-font-weight: bold;-fx-font-family: TimesNewRoman");
 
-        dataOutputStream.writeUTF(msg);
+            TextFlow textFlow = new TextFlow(text);
+            textFlow.setStyle("-fx-background-color: #008bff; -fx-font-weight: bold; -fx-background-radius: 20px");
+            textFlow.setPadding(new Insets(5, 10, 5, 10));
 
-        try {
-            dataOutputStream.flush();
-            txtMsg.clear();
-        }catch (Exception e) {
-            e.printStackTrace();
+            hBox.getChildren().add(textFlow);
+            hBox.setAlignment(Pos.CENTER_RIGHT);
+            vBox.getChildren().add(hBox);
+
+            try {
+                dataOutputStream.writeUTF(msg);
+                dataOutputStream.flush();
+                txtMsg.clear();
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
         }
+
     }
     public void stringCovertImage(String selectFile){
+
         javafx.scene.image.Image image = new Image(selectFile);
         ImageView imageView = new ImageView(image);
         imageView.setFitHeight(200);
@@ -114,6 +144,8 @@ public class ClientController {
 
         vBox.getChildren().add(hBox);
 
+
+
         try {
             dataOutputStream.writeUTF(selectFile);
             dataOutputStream.flush();
@@ -122,17 +154,68 @@ public class ClientController {
         }
     }
 
-    public static void receiveMsg(String tMsg , VBox vBox) {
-        String msg = tMsg;
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                vBox.getChildren().add(new Text(msg));
-               vBox.getChildren().add(new Text("\n"));
+    public static void receiveMsg(String msg , VBox vBox) {
+        if(!msg.isEmpty()) {
+            if (msg.matches(".*\\.(png|jpe?g|gif)$")) {
+
+                HBox hBoxName = new HBox();
+                hBoxName.setAlignment(Pos.CENTER_LEFT);
+                Text textName = new Text("Client Name".split("[-]")[0]);
+                TextFlow textFlowName = new TextFlow(textName);
+                hBoxName.getChildren().add(textFlowName);
+
+                Image image = new Image(msg);
+                ImageView imageView = new ImageView(image);
+                imageView.setFitHeight(200);
+                imageView.setFitWidth(200);
+                HBox hBox = new HBox();
+                hBox.setAlignment(Pos.CENTER_LEFT);
+                hBox.setPadding(new Insets(5, 5, 5, 10));
+                hBox.getChildren().add(imageView);
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        vBox.getChildren().add(hBoxName);
+                        vBox.getChildren().add(hBox);
+                    }
+                });
+
+            } else {
+                String name = "Client".split("-")[0];
+                String msgFromServer = msg;
+
+                HBox hBox = new HBox();
+                hBox.setAlignment(Pos.CENTER_LEFT);
+                hBox.setPadding(new Insets(5, 5, 5, 10));
+
+                HBox hBoxName = new HBox();
+                hBoxName.setAlignment(Pos.CENTER_LEFT);
+                Text textName = new Text(name);
+                TextFlow textFlowName = new TextFlow(textName);
+                hBoxName.getChildren().add(textFlowName);
+
+                Text text = new Text(msgFromServer);
+                TextFlow textFlow = new TextFlow(text);
+                textFlow.setStyle("-fx-background-color: #abb8c3; -fx-font-weight: bold; -fx-background-radius: 20px");
+                textFlow.setPadding(new Insets(5, 10, 5, 10));
+                text.setFill(Color.color(0, 0, 0));
+
+                hBox.getChildren().add(textFlow);
+
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        vBox.getChildren().add(hBoxName);
+                        vBox.getChildren().add(hBox);
+                    }
+                });
             }
-        });
+        }
     }
 
+    public void setClientName(String stage)throws IOException {
+        clientName  = stage;
+    }
 
 
 

@@ -4,7 +4,6 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ClientHandler {
@@ -13,6 +12,7 @@ public class ClientHandler {
     private DataInputStream dataInputStream;
     private DataOutputStream dataOutputStream;
     private String msg = "";
+   // private String name = "Assan";
 
     public ClientHandler(Socket socket, List<ClientHandler> client) {
         try {
@@ -20,6 +20,7 @@ public class ClientHandler {
             this.clients = client;
             this.dataInputStream = new DataInputStream(socket.getInputStream());
             this.dataOutputStream = new DataOutputStream(socket.getOutputStream());
+
         }catch (IOException e){
             e.printStackTrace();
         }

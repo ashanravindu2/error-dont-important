@@ -21,10 +21,9 @@ public class ServerHandler {
         System.out.println("ServerHandler.getInstance()");
         return serverHandler!=null? serverHandler:(serverHandler=new ServerHandler());
 
-
     }
 
-    public void makeSocket(){
+    public void makeSocket(String name){
         System.out.println("ServerHandler.makeSocket()");
         while (!serverSocket.isClosed()){
             try{

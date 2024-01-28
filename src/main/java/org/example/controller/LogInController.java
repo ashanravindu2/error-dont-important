@@ -7,9 +7,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
+import org.example.client.ClientHandler;
 import org.example.client.ServerHandler;
 import org.example.model.UserModel;
 
@@ -33,7 +37,7 @@ public class LogInController {
         new Thread(()->{
             try {
                 serverHandler = ServerHandler.getInstance();
-                serverHandler.makeSocket();
+                serverHandler.makeSocket(txtUserName.getText());
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -43,17 +47,25 @@ public class LogInController {
 
     public void btnLogInAction(ActionEvent actionEvent) throws IOException, SQLException {
         ClientController clientController = new ClientController();
+       // ClientHandler clientHandler = new ClientHandler();
+        //clientHandler.setClientName(txtUserName.getText());
 
         if (!txtUserName.getText().isEmpty()&&txtUserName.getText().matches("[A-Za-z]+")){
             boolean isValid = userModel.login(txtUserName.getText(),txtPass.getText());
+
             if (isValid){
                 Stage stage = new Stage();
                 stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/client_form.fxml"))));
+                clientController.setClientName(txtUserName.getText());
+                // Set the parameter
                 stage.setTitle(txtUserName.getText());
                 stage.setResizable(false);
                 stage.centerOnScreen();
-                stage.getIcons().add(new javafx.scene.image.Image("assets/icons8-male-user-100.png"));
+                stage.getIcons().add(new Image("assets/icons8-male-user-100.png"));
                 stage.setOnCloseRequest(windowEvent -> {
+                   // clientController.shutdown();
+                });
+                stage.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
 
                 });
                 stage.show();
