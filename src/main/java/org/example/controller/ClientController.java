@@ -31,12 +31,12 @@ import java.io.DataOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.net.Socket;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class ClientController {
 
-    public TextField mektdhn;
-
-    private static String clientName;
 
     public Label lblgetName ;
     @FXML
@@ -51,7 +51,7 @@ public class ClientController {
     @FXML
     private TextField txtMsg;
 
-    private Stage stage;
+
 
     @FXML
     private VBox vBox;
@@ -104,7 +104,7 @@ public class ClientController {
         send(msg);
     }
     public void send(String msg) throws IOException {
-        System.out.println(clientName);
+        String getname = lblgetName.getText();
         if (!msg.isEmpty()) {
             HBox hBox = new HBox();
             hBox.setPadding(new Insets(5,6,5,10));
@@ -119,9 +119,8 @@ public class ClientController {
             hBox.getChildren().add(textFlow);
             hBox.setAlignment(Pos.CENTER_RIGHT);
             vBox.getChildren().add(hBox);
-
             try {
-                dataOutputStream.writeUTF(msg);
+                dataOutputStream.writeUTF(getname+"~"+msg);
                 dataOutputStream.flush();
                 txtMsg.clear();
             }catch (Exception e) {
@@ -131,6 +130,7 @@ public class ClientController {
 
     }
     public void stringCovertImage(String selectFile){
+        String getname = lblgetName.getText();
 
         javafx.scene.image.Image image = new Image(selectFile);
         ImageView imageView = new ImageView(image);
@@ -147,7 +147,7 @@ public class ClientController {
 
 
         try {
-            dataOutputStream.writeUTF(selectFile);
+            dataOutputStream.writeUTF(getname+"~"+selectFile);
             dataOutputStream.flush();
         }catch (Exception e){
             e.printStackTrace();
@@ -160,11 +160,12 @@ public class ClientController {
 
                 HBox hBoxName = new HBox();
                 hBoxName.setAlignment(Pos.CENTER_LEFT);
-                Text textName = new Text("Client Name".split("[-]")[0]);
+                Text textName = new Text(msg.split("[~]")[0]);
                 TextFlow textFlowName = new TextFlow(textName);
                 hBoxName.getChildren().add(textFlowName);
 
-                Image image = new Image(msg);
+
+                Image image = new Image(msg.split("[~]")[1]);
                 ImageView imageView = new ImageView(image);
                 imageView.setFitHeight(200);
                 imageView.setFitWidth(200);
@@ -181,8 +182,8 @@ public class ClientController {
                 });
 
             } else {
-                String name = "Client".split("-")[0];
-                String msgFromServer = msg;
+                String name =msg.split("[~]")[0];
+                String msgFromServer = msg.split("[~]")[1];
 
                 HBox hBox = new HBox();
                 hBox.setAlignment(Pos.CENTER_LEFT);
@@ -213,8 +214,8 @@ public class ClientController {
         }
     }
 
-    public void setClientName(String stage)throws IOException {
-        clientName  = stage;
+    public void setClientName(String name){
+        lblgetName.setText(name);
     }
 
 
