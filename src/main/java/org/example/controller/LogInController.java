@@ -46,36 +46,32 @@ public class LogInController {
     }
 
     public void btnLogInAction(ActionEvent actionEvent) throws IOException, SQLException {
-        ClientController clientController = new ClientController();
-       // ClientHandler clientHandler = new ClientHandler();
-        //clientHandler.setClientName(txtUserName.getText());
-
         if (!txtUserName.getText().isEmpty()&&txtUserName.getText().matches("[A-Za-z]+")){
             boolean isValid = userModel.login(txtUserName.getText(),txtPass.getText());
 
-            if (isValid){
-                Stage stage = new Stage();
-                stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/client_form.fxml"))));
+            if (isValid) {
+                FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/client_form.fxml"));
+                Parent rootNode = loader.load();
+                ClientController clientController = loader.getController();
+                //setName parameter
                 clientController.setClientName(txtUserName.getText());
-                // Set the parameter
-                stage.setTitle(txtUserName.getText());
+                Scene scene = new Scene(rootNode);
+                Stage stage = new Stage();
+                stage.setScene(scene);
                 stage.setResizable(false);
-                stage.centerOnScreen();
                 stage.getIcons().add(new Image("assets/icons8-male-user-100.png"));
-                stage.setOnCloseRequest(windowEvent -> {
-                   // clientController.shutdown();
-                });
-                stage.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-
-                });
+                stage.centerOnScreen();
+                stage.setTitle(txtUserName.getText() + " 's Chat");
                 stage.show();
-                txtUserName.clear();
-            }else{
+            }
+            else{
                 new Alert(Alert.AlertType.ERROR, "Invalid User Name or Password").show();
             }
         }else{
            new Alert(Alert.AlertType.ERROR, "Please enter your name").show();
         }
+        txtUserName.clear();
+        txtPass.clear();
 
     }
 
