@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import java.lang.String?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -14,7 +15,10 @@
    <children>
       <ScrollPane fx:id="scrollpain" layoutX="25.0" layoutY="28.0" prefHeight="398.0" prefWidth="534.0" AnchorPane.leftAnchor="28.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="28.0">
          <content>
-            <VBox fx:id="vBox" prefHeight="396.0" prefWidth="532.0" />
+            <VBox fx:id="vBox" prefWidth="532.0">
+               <opaqueInsets>
+                  <Insets bottom="10.0" top="10.0" />
+               </opaqueInsets></VBox>
          </content>
       </ScrollPane>
       <TextField fx:id="txtMsg" layoutX="28.0" layoutY="460.0" prefHeight="32.0" prefWidth="339.0" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="28.0" AnchorPane.rightAnchor="221.0" />

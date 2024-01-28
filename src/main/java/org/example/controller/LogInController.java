@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import org.example.client.ServerHandler;
 import org.example.model.UserModel;
 
 import java.io.IOException;
@@ -24,18 +25,28 @@ public class LogInController {
     public AnchorPane pane;
     public TextField txtPass;
     UserModel userModel = new UserModel();
-    ServerController serverController = new ServerController();
-    public void initialize(){
+    private ServerHandler serverHandler;
+
+
+    public void initialize() throws IOException {
+
+        new Thread(()->{
+            try {
+                serverHandler = ServerHandler.getInstance();
+                serverHandler.makeSocket();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }).start();
 
     }
 
     public void btnLogInAction(ActionEvent actionEvent) throws IOException, SQLException {
- ClientController clientController = new ClientController();
-        clientController.run();
+        ClientController clientController = new ClientController();
+
         if (!txtUserName.getText().isEmpty()&&txtUserName.getText().matches("[A-Za-z]+")){
             boolean isValid = userModel.login(txtUserName.getText(),txtPass.getText());
             if (isValid){
-
                 Stage stage = new Stage();
                 stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/client_form.fxml"))));
                 stage.setTitle(txtUserName.getText());

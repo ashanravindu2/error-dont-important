@@ -9,12 +9,12 @@ import java.util.List;
 
 public class ClientHandler {
     private Socket socket;
-    private ArrayList<ClientHandler> clients;
+    private List<ClientHandler> clients;
     private DataInputStream dataInputStream;
     private DataOutputStream dataOutputStream;
     private String msg = "";
 
-    public void ClientHandler(Socket socket, ArrayList<ClientHandler> client) {
+    public ClientHandler(Socket socket, List<ClientHandler> client) {
         try {
             this.socket = socket;
             this.clients = client;
@@ -43,4 +43,5 @@ public class ClientHandler {
             }
         }).start();
     }
+
 }
