@@ -64,6 +64,6 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <Label fx:id="lblgetName" layoutX="28.0" layoutY="6.0" text="Label" />
+      <Label fx:id="lblgetName" layoutX="28.0" layoutY="6.0" text="Label" visible="false" />
    </children>
 </AnchorPane>

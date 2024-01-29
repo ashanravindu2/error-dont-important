@@ -6,11 +6,15 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.example.model.UserModel;
+import org.w3c.dom.Text;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -18,10 +22,15 @@ public class RegisterController {
     public AnchorPane pane;
     public TextField txtUserName;
     public TextField txtPass;
+    public ImageView profileImg;
+     private String profileURL ;
 
     UserModel userModel = new UserModel();
 
     public void btnCreateOnAction(ActionEvent actionEvent) throws SQLException {
+        if (profileURL==null){
+            profileURL = "assets/icons8-male-user-100.png";
+        }
 
     if (!txtUserName.getText().isEmpty()&&txtUserName.getText().matches("[A-Za-z]+")){
         if (!txtPass.getText().isEmpty()&&txtPass.getText().matches("[A-Za-z0-9]+")) {
@@ -29,7 +38,7 @@ public class RegisterController {
             if (isValid){
                 new Alert(Alert.AlertType.ERROR, "User already exists").show();
             }else {
-                boolean isRegister = userModel.register(txtUserName.getText(), txtPass.getText());
+                boolean isRegister = userModel.register(txtUserName.getText(), txtPass.getText(), profileURL);
                 if (isRegister){
                     new Alert(Alert.AlertType.CONFIRMATION, "User created successfully").show();
                 }
@@ -48,5 +57,17 @@ public class RegisterController {
         Stage stage = (Stage) this.pane.getScene().getWindow();
         stage.setTitle("Join");
         stage.setScene(scene);
+    }
+
+    public void selectProfilePicAction(MouseEvent mouseEvent) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Image File");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif")
+        );
+        File selectedFile = fileChooser.showOpenDialog(null);
+        profileImg.setImage(new javafx.scene.image.Image(selectedFile.toURI().toString()));
+        String selectFile = selectedFile.getAbsolutePath();
+        profileURL= selectFile;
     }
 }

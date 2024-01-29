@@ -3,14 +3,18 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import java.lang.String?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="457.0" prefWidth="336.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.LogInController">
    <children>
-      <AnchorPane fx:id="pane" prefHeight="457.0" prefWidth="336.0" />
-      <TextField fx:id="txtUserName" layoutX="45.0" layoutY="200.0" prefHeight="27.0" prefWidth="237.0" />
+      <AnchorPane fx:id="pane" prefHeight="457.0" prefWidth="336.0">
+         <children>
+            <ImageView fx:id="profileImg" fitHeight="64.0" fitWidth="75.0" layoutX="131.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true" />
+         </children></AnchorPane>
+      <TextField fx:id="txtUserName" layoutX="45.0" layoutY="200.0" onKeyTyped="#btnGetProfilePicAction" prefHeight="27.0" prefWidth="237.0" />
       <JFXButton fx:id="logBtn" layoutX="45.0" layoutY="337.0" onAction="#btnLogInAction" prefHeight="36.0" prefWidth="237.0" stylesheets="@../css/style.css" text="Join" textFill="WHITE">
          <styleClass>
             <String fx:value="btn" />

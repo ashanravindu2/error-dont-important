@@ -8,6 +8,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
@@ -18,6 +20,8 @@ import org.example.client.ServerHandler;
 import org.example.model.UserModel;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
@@ -28,13 +32,17 @@ public class LogInController {
     public JFXButton logBtn;
     public AnchorPane pane;
     public TextField txtPass;
+    public ImageView profileImg;
     UserModel userModel = new UserModel();
     private ServerHandler serverHandler;
 
 
     public void initialize() throws IOException {
+        Image ima = new Image("assets/icons8-male-user-100.png");
+        ImageView imageView = new ImageView(ima);
+        profileImg.setImage(imageView.getImage());
 
-        new Thread(()->{
+        new Thread(() -> {
             try {
                 serverHandler = ServerHandler.getInstance();
                 serverHandler.makeSocket(txtUserName.getText());
@@ -46,8 +54,8 @@ public class LogInController {
     }
 
     public void btnLogInAction(ActionEvent actionEvent) throws IOException, SQLException {
-        if (!txtUserName.getText().isEmpty()&&txtUserName.getText().matches("[A-Za-z]+")){
-            boolean isValid = userModel.login(txtUserName.getText(),txtPass.getText());
+        if (!txtUserName.getText().isEmpty() && txtUserName.getText().matches("[A-Za-z]+")) {
+            boolean isValid = userModel.login(txtUserName.getText(), txtPass.getText());
 
             if (isValid) {
                 FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/client_form.fxml"));
@@ -63,12 +71,11 @@ public class LogInController {
                 stage.centerOnScreen();
                 stage.setTitle(txtUserName.getText() + " 's Chat");
                 stage.show();
-            }
-            else{
+            } else {
                 new Alert(Alert.AlertType.ERROR, "Invalid User Name or Password").show();
             }
-        }else{
-           new Alert(Alert.AlertType.ERROR, "Please enter your name").show();
+        } else {
+            new Alert(Alert.AlertType.ERROR, "Please enter your name").show();
         }
         txtUserName.clear();
         txtPass.clear();
@@ -82,5 +89,27 @@ public class LogInController {
         Stage stage = (Stage) this.pane.getScene().getWindow();
         stage.setTitle("Register");
         stage.setScene(scene);
+    }
+
+
+    public void btnGetProfilePicAction(KeyEvent keyEvent) throws SQLException {
+        if (txtUserName.getText().isEmpty()) {
+            try {
+                Image ima = new Image("assets/icons8-male-user-100.png");
+                ImageView imageView = new ImageView(ima);
+                profileImg.setImage(imageView.getImage());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }else {
+            ResultSet isValid = userModel.getImageURL(txtUserName.getText());
+            while (isValid.next()){
+                String url = isValid.getString("profilePicUrl");
+                Image ima = new Image(url);
+                ImageView imageView = new ImageView(ima);
+                profileImg.setImage(imageView.getImage());
+            }
+
+        }
     }
 }
