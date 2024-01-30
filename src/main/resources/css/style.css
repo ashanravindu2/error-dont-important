@@ -11,3 +11,9 @@
 .client2{
     -fx-background-color: rgba(112, 111, 211, 0.46);
 }
+
+
+.Imageview {
+    -fx-border-radius: 10 10 10 10;
+    -fx-background-radius: 10 10 10 10;
+}
