@@ -14,7 +14,7 @@
 
 <AnchorPane fx:id="pane" prefHeight="527.0" prefWidth="587.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.ClientController">
    <children>
-      <ScrollPane fx:id="scrollpain" layoutX="25.0" layoutY="28.0" prefHeight="398.0" prefWidth="534.0" AnchorPane.leftAnchor="28.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="28.0">
+      <ScrollPane fx:id="scrollpain" hbarPolicy="NEVER" layoutX="25.0" layoutY="28.0" pannable="true" prefHeight="398.0" prefWidth="534.0" AnchorPane.leftAnchor="28.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="28.0">
          <content>
             <VBox fx:id="vBox" prefWidth="532.0">
                <opaqueInsets>

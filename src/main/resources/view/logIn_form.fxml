@@ -3,8 +3,8 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import java.lang.String?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -12,10 +12,17 @@
    <children>
       <AnchorPane fx:id="pane" prefHeight="457.0" prefWidth="336.0">
          <children>
-            <ImageView fx:id="profileImg" fitHeight="64.0" fitWidth="75.0" layoutX="131.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true" />
+            <Rectangle fx:id="profileImg" accessibleRole="IMAGE_VIEW" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="71.0" layoutX="132.0" layoutY="65.0" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-width: 100; -fx-arc-height: 100;" width="73.0" AnchorPane.bottomAnchor="321.0" AnchorPane.leftAnchor="131.0" AnchorPane.rightAnchor="131.0" AnchorPane.topAnchor="65.0" />
+            <TextField fx:id="txtPass" layoutX="49.0" layoutY="258.0" prefHeight="27.0" prefWidth="237.0" AnchorPane.bottomAnchor="174.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="49.0" AnchorPane.topAnchor="256.0" />
+            <Text layoutX="80.0" layoutY="418.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Don't have an account?" />
+            <Text fill="#004dff" layoutX="210.0" layoutY="418.0" onMouseClicked="#getRegisterPageAction" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign Up">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Text>
          </children></AnchorPane>
-      <TextField fx:id="txtUserName" layoutX="45.0" layoutY="200.0" onKeyTyped="#btnGetProfilePicAction" prefHeight="27.0" prefWidth="237.0" />
-      <JFXButton fx:id="logBtn" layoutX="45.0" layoutY="337.0" onAction="#btnLogInAction" prefHeight="36.0" prefWidth="237.0" stylesheets="@../css/style.css" text="Join" textFill="WHITE">
+      <TextField fx:id="txtUserName" layoutX="45.0" layoutY="200.0" onKeyTyped="#btnGetProfilePicAction" prefHeight="27.0" prefWidth="237.0" AnchorPane.bottomAnchor="228.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="49.0" AnchorPane.topAnchor="201.0" />
+      <JFXButton fx:id="logBtn" layoutX="45.0" layoutY="337.0" onAction="#btnLogInAction" prefHeight="36.0" prefWidth="237.0" stylesheets="@../css/style.css" text="Join" textFill="WHITE" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="49.0" AnchorPane.topAnchor="331.0">
          <styleClass>
             <String fx:value="btn" />
             <String fx:value="btn2" />
@@ -24,12 +31,5 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </JFXButton>
-      <TextField fx:id="txtPass" layoutX="45.0" layoutY="257.0" prefHeight="27.0" prefWidth="237.0" />
-      <Text layoutX="80.0" layoutY="417.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Don't have an account?" />
-      <Text fill="#004dff" layoutX="210.0" layoutY="417.0" onMouseClicked="#getRegisterPageAction" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign Up">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Text>
    </children>
 </AnchorPane>
