@@ -3,8 +3,8 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import java.lang.String?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -12,24 +12,24 @@
    <children>
       <AnchorPane fx:id="pane" layoutY="-1.0" prefHeight="457.0" prefWidth="336.0">
          <children>
-            <ImageView fx:id="profileImg" fitHeight="64.0" fitWidth="75.0" layoutX="129.0" layoutY="72.0" onMouseClicked="#selectProfilePicAction" pickOnBounds="true" preserveRatio="true" style="-fx-scale-z: 22 22 2 2;" />
+            <Rectangle fx:id="profileImg" accessibleRole="IMAGE_VIEW" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="71.0" layoutX="131.0" layoutY="65.0" onMouseClicked="#selectProfilePicAction" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-width: 100; -fx-arc-height: 100;" width="73.0" AnchorPane.bottomAnchor="321.0" AnchorPane.leftAnchor="131.0" AnchorPane.rightAnchor="131.0" AnchorPane.topAnchor="65.0" />
+            <TextField fx:id="txtUserName" layoutX="50.0" layoutY="202.0" prefHeight="27.0" prefWidth="237.0" AnchorPane.bottomAnchor="228.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="49.0" AnchorPane.topAnchor="202.0" />
+            <TextField fx:id="txtPass" layoutX="50.0" layoutY="256.0" prefHeight="27.0" prefWidth="237.0" AnchorPane.bottomAnchor="174.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="49.0" AnchorPane.topAnchor="256.0" />
+            <JFXButton fx:id="createBtn" layoutX="50.0" layoutY="331.0" onAction="#btnCreateOnAction" prefHeight="36.0" prefWidth="237.0" stylesheets="@../css/style.css" text="Create" textFill="WHITE" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="49.0" AnchorPane.topAnchor="331.0">
+               <styleClass>
+                  <String fx:value="btn" />
+                  <String fx:value="btn2" />
+               </styleClass>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXButton>
+            <Text layoutX="69.0" layoutY="412.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Already have an account?" />
+            <Text fill="#004dff" layoutX="208.0" layoutY="412.0" onMouseClicked="#getLogInPageAction" strokeType="OUTSIDE" strokeWidth="0.0" text="Login here">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Text>
          </children></AnchorPane>
-      <TextField fx:id="txtUserName" layoutX="45.0" layoutY="200.0" prefHeight="27.0" prefWidth="237.0" />
-      <JFXButton fx:id="createBtn" layoutX="45.0" layoutY="337.0" onAction="#btnCreateOnAction" prefHeight="36.0" prefWidth="237.0" stylesheets="@../css/style.css" text="Create" textFill="WHITE">
-         <styleClass>
-            <String fx:value="btn" />
-            <String fx:value="btn2" />
-         </styleClass>
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </JFXButton>
-      <TextField fx:id="txtPass" layoutX="45.0" layoutY="257.0" prefHeight="27.0" prefWidth="237.0" />
-      <Text layoutX="62.0" layoutY="417.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Already have an account?" />
-      <Text fill="#004dff" layoutX="201.0" layoutY="417.0" onMouseClicked="#getLogInPageAction" strokeType="OUTSIDE" strokeWidth="0.0" text="Login here">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Text>
    </children>
 </AnchorPane>

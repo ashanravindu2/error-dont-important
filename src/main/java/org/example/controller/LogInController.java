@@ -12,12 +12,16 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 import org.example.client.ClientHandler;
 import org.example.client.ServerHandler;
 import org.example.model.UserModel;
+import org.jfree.layout.CenterLayout;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -32,15 +36,14 @@ public class LogInController {
     public JFXButton logBtn;
     public AnchorPane pane;
     public TextField txtPass;
-    public ImageView profileImg;
+    public Rectangle profileImg;
     UserModel userModel = new UserModel();
     private ServerHandler serverHandler;
 
 
     public void initialize() throws IOException {
         Image ima = new Image("assets/icons8-male-user-100.png");
-        ImageView imageView = new ImageView(ima);
-        profileImg.setImage(imageView.getImage());
+        profileImg.setFill(new ImagePattern(ima));
 
         new Thread(() -> {
             try {
@@ -96,20 +99,17 @@ public class LogInController {
         if (txtUserName.getText().isEmpty()) {
             try {
                 Image ima = new Image("assets/icons8-male-user-100.png");
-                ImageView imageView = new ImageView(ima);
-                profileImg.setImage(imageView.getImage());
+                profileImg.setFill(new ImagePattern(ima));
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }else {
+        } else if (!txtUserName.getText().isEmpty()) {
             ResultSet isValid = userModel.getImageURL(txtUserName.getText());
-            while (isValid.next()){
+            while (isValid.next()) {
                 String url = isValid.getString("profilePicUrl");
                 Image ima = new Image(url);
-                ImageView imageView = new ImageView(ima);
-                profileImg.setImage(imageView.getImage());
+                profileImg.setFill(new ImagePattern(ima));
             }
-
         }
     }
 }

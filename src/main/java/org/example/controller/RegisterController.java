@@ -9,6 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.example.model.UserModel;
@@ -22,10 +23,14 @@ public class RegisterController {
     public AnchorPane pane;
     public TextField txtUserName;
     public TextField txtPass;
-    public ImageView profileImg;
-     private String profileURL ;
+    public Rectangle profileImg;
+    private String profileURL ;
 
     UserModel userModel = new UserModel();
+    public void initialize(){
+       // String localProfilePic = assets/icons8-camera-64.png
+        profileImg.setFill(new javafx.scene.paint.ImagePattern(new javafx.scene.image.Image("assets/registerProfileCamera.png")));
+    }
 
     public void btnCreateOnAction(ActionEvent actionEvent) throws SQLException {
         if (profileURL==null){
@@ -60,14 +65,19 @@ public class RegisterController {
     }
 
     public void selectProfilePicAction(MouseEvent mouseEvent) {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Open Image File");
-        fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif")
-        );
-        File selectedFile = fileChooser.showOpenDialog(null);
-        profileImg.setImage(new javafx.scene.image.Image(selectedFile.toURI().toString()));
-        String selectFile = selectedFile.getAbsolutePath();
-        profileURL= selectFile;
+        try {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Open Image File");
+            fileChooser.getExtensionFilters().addAll(
+                    new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif")
+            );
+            File selectedFile = fileChooser.showOpenDialog(null);
+            profileImg.setFill(new javafx.scene.paint.ImagePattern(new javafx.scene.image.Image(selectedFile.toURI().toString())));
+            String selectFile = selectedFile.getAbsolutePath();
+            profileURL= selectFile;
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
     }
 }
