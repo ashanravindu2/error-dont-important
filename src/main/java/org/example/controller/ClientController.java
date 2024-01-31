@@ -65,7 +65,7 @@ public class ClientController {
 
 
     public void initialize(){
-
+        txtMsg.requestFocus();
 
            new Thread(new Runnable() {
                @Override

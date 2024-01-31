@@ -28,6 +28,7 @@ public class RegisterController {
 
     UserModel userModel = new UserModel();
     public void initialize(){
+
        // String localProfilePic = assets/icons8-camera-64.png
         profileImg.setFill(new javafx.scene.paint.ImagePattern(new javafx.scene.image.Image("assets/registerProfileCamera.png")));
     }
