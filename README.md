@@ -1,4 +1,4 @@
-# Socket Programing(INP)-Live-Chat
+# Socket Programming(INP)-Live-Chat
 
 Welcome to the Introduction to Network Programming project! This project is developed for Client-Server Chat Application using Socket Programming concepts
 
