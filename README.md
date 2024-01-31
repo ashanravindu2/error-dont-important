@@ -32,3 +32,7 @@ To run the project, follow these steps:
 1. Open the project in your IDE.
 2. Build and run the application.
 
+![Alt text](src/main/resources/assets/background.jpg
+)
+
+
