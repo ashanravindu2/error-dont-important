@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
@@ -29,8 +30,8 @@ public class RegisterController {
     UserModel userModel = new UserModel();
     public void initialize(){
 
-       // String localProfilePic = assets/icons8-camera-64.png
-        profileImg.setFill(new javafx.scene.paint.ImagePattern(new javafx.scene.image.Image("assets/registerProfileCamera.png")));
+        profileImg.setFill(new javafx.scene.paint.ImagePattern(new javafx.scene.image.Image("assets/registercamera.png")));
+
     }
 
     public void btnCreateOnAction(ActionEvent actionEvent) throws SQLException {
@@ -80,5 +81,15 @@ public class RegisterController {
             System.out.println(e.getMessage());
         }
 
+    }
+
+    public void btnEnterOnAction(KeyEvent keyEvent) throws SQLException {
+        if (keyEvent.getCode().toString().equals("ENTER")) {
+            try {
+                btnCreateOnAction(new ActionEvent());
+            }catch (Exception e){
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }

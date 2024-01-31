@@ -112,4 +112,14 @@ public class LogInController {
             }
         }
     }
+
+    public void btnEnterOnAction(KeyEvent keyEvent) {
+        if (keyEvent.getCode().toString().equals("ENTER")) {
+            try {
+                btnLogInAction(new ActionEvent());
+            } catch (IOException | SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }
