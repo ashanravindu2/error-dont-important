@@ -188,7 +188,7 @@ public class ClientController {
         }
 
         if(!recieveNameandMsg.isEmpty()) {
-            if (recieveNameandMsg.matches(".*\\.(png|jpe?g|gif)$")) {
+            if (recieveNameandMsg.matches(".*\\.(png|jpe?g|gif|PNG)$")) {
 
                 HBox hBoxName = new HBox();
                 hBoxName.setAlignment(Pos.CENTER_LEFT);

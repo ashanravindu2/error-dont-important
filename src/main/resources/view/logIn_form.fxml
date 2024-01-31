@@ -65,7 +65,7 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Text>
-            <JFXTextField fx:id="txtPass" layoutX="50.0" layoutY="262.0" prefHeight="25.0" prefWidth="237.0" promptText="Password" unFocusColor="WHITE" AnchorPane.bottomAnchor="170.0" AnchorPane.leftAnchor="49.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="262.0">
+            <JFXTextField fx:id="txtPass" accessibleRole="PASSWORD_FIELD" layoutX="50.0" layoutY="262.0" prefHeight="25.0" prefWidth="237.0" promptText="Password" unFocusColor="WHITE" AnchorPane.bottomAnchor="170.0" AnchorPane.leftAnchor="49.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="262.0">
                <font>
                   <Font name="System Bold Italic" size="12.0" />
                </font></JFXTextField>
