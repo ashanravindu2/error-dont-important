@@ -32,7 +32,14 @@ To run the project, follow these steps:
 1. Open the project in your IDE.
 2. Build and run the application.
 
-![Alt text](src/main/resources/assets/background.jpg
-)
+## Project View Sample
+#### LOGIN PREVIEW
+![Alt text](src/main/resources/assets/projectView/UserLogin.PNG)
+
+#### REGISTER PREVIEW
+![Alt text](src/main/resources/assets/projectView/Register.PNG)
+
+#### CHAT PREVIEW
+![Alt text](src/main/resources/assets/projectView/Chat.PNG)
 
 
