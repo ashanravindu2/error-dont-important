@@ -13,6 +13,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -22,6 +23,7 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import org.example.emoji.EmojiSet;
 import org.example.model.UserModel;
 
 import java.awt.*;
@@ -66,7 +68,7 @@ public class ClientController {
 
     public void initialize(){
         txtMsg.requestFocus();
-
+        emoji();
            new Thread(new Runnable() {
                @Override
                public void run() {
@@ -119,10 +121,9 @@ public class ClientController {
             hBox.setPadding(new Insets(5,6,5,10));
 
             Text text = new Text(msg);
-            text.setStyle("-fx-background-color: #ffffff;-fx-font-size: 12px;-fx-font-weight: bold;-fx-font-family: TimesNewRoman");
-
+            text.setFill(Color.WHITE);
             TextFlow textFlow = new TextFlow(text);
-            textFlow.setStyle("-fx-background-color: #008bff; -fx-font-weight: bold; -fx-background-radius: 20px");
+            textFlow.setStyle("-fx-background-color: #a367b1; -fx-font-weight: bold; -fx-background-radius: 20px ;");
             textFlow.setPadding(new Insets(5, 10, 5, 10));
 
             hBox.getChildren().add(textFlow);
@@ -143,8 +144,8 @@ public class ClientController {
 
         javafx.scene.image.Image image = new Image(selectFile);
         ImageView imageView = new ImageView(image);
-        imageView.setFitHeight(200);
-        imageView.setFitWidth(200);
+        imageView.setFitHeight(150);
+        imageView.setFitWidth(150);
 
         HBox hBox = new HBox();
         hBox.setPadding(new Insets(5,5,5,10));
@@ -193,14 +194,14 @@ public class ClientController {
                 hBoxName.setAlignment(Pos.CENTER_LEFT);
                 Text textName = new Text(recieveNameandMsg.split("[~]")[0]);
                 TextFlow textFlowName = new TextFlow(textName);
-                textFlowName.setStyle("-fx-background-color: #dcc9c9; -fx-font-weight: bold; -fx-background-radius: 5px ; -fx-font-size: 14px");
+                textFlowName.setStyle("-fx-background-color: #dcc9c9;-fx-background-radius: 10px ; -fx-font-size: 10px ;");
                 textFlowName.setPadding(new Insets(5, 10, 5, 10));
                 hBoxName.getChildren().add(textFlowName);
 
                 Image image = new Image(recieveNameandMsg.split("[~]")[1]);
                 ImageView imageView = new ImageView(image);
-                imageView.setFitHeight(200);
-                imageView.setFitWidth(200);
+                imageView.setFitHeight(150);
+                imageView.setFitWidth(150);
                 HBox hBox = new HBox();
                 hBox.setAlignment(Pos.CENTER_LEFT);
                 hBox.setPadding(new Insets(5, 5, 5, 10));
@@ -228,15 +229,15 @@ public class ClientController {
                 hBoxName.setAlignment(Pos.CENTER_LEFT);
                 Text textName = new Text(name);
                 TextFlow textFlowName = new TextFlow(textName);
-                textFlowName.setStyle("-fx-background-color: #dcc9c9; -fx-font-weight: bold; -fx-background-radius: 5px ; -fx-font-size: 14px");
-                textFlowName.setPadding(new Insets(5, 10, 5, 10));
+                textFlowName.setStyle("-fx-background-color: #dcc9c9;-fx-background-radius: 10px ; -fx-font-size: 10px ;");
+                textFlowName.setPadding(new Insets(5, 8, 5, 8));
                 hBoxName.getChildren().add(textFlowName);
 
                 Text text = new Text(msgFromServer);
+                text.setFill(Color.WHITE);
                 TextFlow textFlow = new TextFlow(text);
-                textFlow.setStyle("-fx-background-color: #abb8c3;-fx-background-radius: 10px;");
+                textFlow.setStyle("-fx-background-color: rgba(87,87,89,0.84); -fx-font-weight: bold; -fx-background-radius: 20px ;");
                 textFlow.setPadding(new Insets(5, 10, 5, 10));
-                text.setFill(Color.color(0, 0, 0));
 
                 hBox.getChildren().add(textFlow);
 
@@ -259,5 +260,50 @@ public class ClientController {
     }
 
 
+    public void btnemojiOnAction(MouseEvent mouseEvent) {
 
+    }
+    private void emoji() {
+        // Create the EmojiPicker
+        EmojiSet emojiPicker = new EmojiSet();
+
+        VBox vBox = new VBox(emojiPicker);
+        vBox.setPrefSize(100,300);
+        vBox.setLayoutX(400);
+        vBox.setLayoutY(178);
+        vBox.setStyle("-fx-font-size: 20");
+
+        pane.getChildren().add(vBox);
+
+        // Set the emoji picker as hidden initially
+        emojiPicker.setVisible(false);
+
+        // Show the emoji picker when the button is clicked
+        emojiBtn.setOnAction(event -> {
+            if (emojiPicker.isVisible()){
+                emojiPicker.setVisible(false);
+            }else {
+                emojiPicker.setVisible(true);
+            }
+        });
+
+        // Set the selected emoji from the picker to the text field
+        emojiPicker.getEmojiListView().setOnMouseClicked(event -> {
+            String selectedEmoji = emojiPicker.getEmojiListView().getSelectionModel().getSelectedItem();
+            if (selectedEmoji != null) {
+                txtMsg.setText(txtMsg.getText()+selectedEmoji);
+            }
+            emojiPicker.setVisible(false);
+        });
+    }
+
+    public void btnEnterOnAction(KeyEvent keyEvent) {
+        if (keyEvent.getCode().toString().equals("ENTER")){
+            try {
+                send(txtMsg.getText());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }

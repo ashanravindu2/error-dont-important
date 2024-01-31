@@ -1,24 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="pane" prefHeight="527.0" prefWidth="587.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.ClientController">
+<AnchorPane fx:id="pane" prefHeight="527.0" prefWidth="587.0" style="-fx-background-color: #d7ace3;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.ClientController">
    <children>
-      <ScrollPane fx:id="scrollpain" hbarPolicy="NEVER" layoutX="25.0" layoutY="28.0" pannable="true" prefHeight="398.0" prefWidth="338.0" AnchorPane.leftAnchor="28.0" AnchorPane.rightAnchor="221.0" AnchorPane.topAnchor="28.0">
+      <ScrollPane fx:id="scrollpain" hbarPolicy="NEVER" layoutX="28.0" layoutY="36.0" pannable="true" prefHeight="398.0" prefWidth="531.0" style="-fx-background-color: #5D3587;" AnchorPane.leftAnchor="28.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="36.0">
          <content>
-            <VBox fx:id="vBox" prefHeight="0.0" prefWidth="337.0">
+            <VBox fx:id="vBox" prefHeight="66.0" prefWidth="527.0">
                <opaqueInsets>
                   <Insets bottom="10.0" top="10.0" />
                </opaqueInsets></VBox>
          </content>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
       </ScrollPane>
-      <TextField fx:id="txtMsg" layoutX="28.0" layoutY="460.0" prefHeight="32.0" prefWidth="339.0" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="28.0" AnchorPane.rightAnchor="221.0" />
+      <TextField fx:id="txtMsg" layoutX="28.0" layoutY="460.0" onKeyPressed="#btnEnterOnAction" prefHeight="32.0" prefWidth="339.0" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="28.0" AnchorPane.rightAnchor="221.0" />
       <JFXButton layoutX="468.0" layoutY="460.0" onAction="#btnMsgOnAction" prefHeight="32.0" prefWidth="91.0" stylesheets="@../css/style.css" text="Send" textFill="WHITE" AnchorPane.rightAnchor="28.0">
          <font>
             <Font name="System Bold" size="12.0" />
@@ -28,7 +37,7 @@
             <String fx:value="btn2" />
          </styleClass>
       </JFXButton>
-      <JFXButton fx:id="emojiBtn" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="420.0" layoutY="460.0" prefHeight="32.0" prefWidth="40.0" stylesheets="@../css/style.css" AnchorPane.rightAnchor="127.0">
+      <JFXButton fx:id="emojiBtn" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="420.0" layoutY="460.0" onMouseClicked="#btnemojiOnAction" prefHeight="32.0" prefWidth="40.0" stylesheets="@../css/style.css" textFill="#aea8c3" AnchorPane.rightAnchor="127.0">
          <graphic>
 
          </graphic>
@@ -62,4 +71,11 @@
       </JFXButton>
       <Label fx:id="lblgetName" layoutX="28.0" layoutY="6.0" text="Label" visible="false" />
    </children>
+   <effect>
+      <DropShadow>
+         <color>
+            <Color red="0.2677631676197052" blue="0.4868420958518982" />
+         </color>
+      </DropShadow>
+   </effect>
 </AnchorPane>
