@@ -1,4 +1,4 @@
-package org.example.client;
+package org.example.handler;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -44,5 +44,6 @@ public class ClientHandler {
             }
         }).start();
     }
+
 
 }

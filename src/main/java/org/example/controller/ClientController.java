@@ -24,6 +24,7 @@ import javafx.scene.text.TextFlow;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.example.emoji.EmojiSet;
+import org.example.handler.ClientHandler;
 import org.example.model.UserModel;
 
 import java.awt.*;
@@ -44,6 +45,7 @@ public class ClientController {
 
 
     public Label lblgetName ;
+    public Label leftmember;
     @FXML
     private JFXButton emojiBtn;
 
@@ -93,6 +95,7 @@ public class ClientController {
     }
     @FXML
     void btnImageAction(ActionEvent event) throws IOException {
+        System.out.println("deeeeeeeeeeeeeeeeeeeeeeeeeee");
         try{  FileChooser fileChooser = new FileChooser();
             fileChooser.setTitle("Open Image File");
             fileChooser.getExtensionFilters().addAll(
@@ -153,8 +156,6 @@ public class ClientController {
         hBox.setAlignment(Pos.CENTER_RIGHT);
 
         vBox.getChildren().add(hBox);
-
-
 
         try {
             dataOutputStream.writeUTF(getname+"~"+selectFile);
@@ -252,6 +253,10 @@ public class ClientController {
                 });
             }
         }
+        if (recieveNameandMsg.matches("Left : .*")){
+            String name = recieveNameandMsg.split("[:]")[1];
+            System.out.println("left : "+name);
+        }
     }
 
     public void setClientName(String name){
@@ -259,18 +264,14 @@ public class ClientController {
         lblgetName.setText(name);
     }
 
-
-    public void btnemojiOnAction(MouseEvent mouseEvent) {
-
-    }
     private void emoji() {
         // Create the EmojiPicker
         EmojiSet emojiPicker = new EmojiSet();
 
         VBox vBox = new VBox(emojiPicker);
         vBox.setPrefSize(100,300);
-        vBox.setLayoutX(400);
-        vBox.setLayoutY(178);
+        vBox.setLayoutX(550);
+        vBox.setLayoutY(75);
         vBox.setStyle("-fx-font-size: 20");
 
         pane.getChildren().add(vBox);
@@ -305,5 +306,12 @@ public class ClientController {
                 e.printStackTrace();
             }
         }
+
     }
+
+    public void shutdown() throws SQLException {
+        System.out.println("left : "+lblgetName.getText());
+    }
+
+
 }

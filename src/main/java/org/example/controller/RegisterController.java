@@ -58,11 +58,10 @@ public class RegisterController {
     }
 
     public void getLogInPageAction(MouseEvent mouseEvent) throws IOException {
-        Parent pane = FXMLLoader.load(getClass().getResource("/view/logIn_form.fxml"));
-        this.pane.getChildren().clear();
-        Scene scene = new Scene(pane);
+        Parent rootNode = FXMLLoader.load(getClass().getResource("/view/login_form.fxml"));
+        Scene scene = new Scene(rootNode);
         Stage stage = (Stage) this.pane.getScene().getWindow();
-        stage.setTitle("Join");
+        stage.setTitle("");
         stage.setScene(scene);
     }
 

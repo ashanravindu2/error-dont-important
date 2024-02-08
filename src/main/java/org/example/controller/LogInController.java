@@ -8,23 +8,16 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
-import org.example.client.ClientHandler;
-import org.example.client.ServerHandler;
+import org.example.handler.ServerHandler;
 import org.example.model.UserModel;
-import org.jfree.layout.CenterLayout;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -48,7 +41,7 @@ public class LogInController {
         new Thread(() -> {
             try {
                 serverHandler = ServerHandler.getInstance();
-                serverHandler.makeSocket(txtUserName.getText());
+                serverHandler.makeSocket();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -74,6 +67,13 @@ public class LogInController {
                 stage.centerOnScreen();
                 stage.setTitle(txtUserName.getText() + " 's Chat");
                 stage.show();
+                stage.setOnCloseRequest(windowEvent -> {
+                    try {
+                        clientController.shutdown();
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
             } else {
                 new Alert(Alert.AlertType.ERROR, "Invalid User Name or Password").show();
             }
@@ -86,12 +86,9 @@ public class LogInController {
     }
 
     public void getRegisterPageAction(MouseEvent mouseEvent) throws IOException {
-        Parent pane = FXMLLoader.load(getClass().getResource("/view/register_form.fxml"));
+        Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/register_form.fxml"));
         this.pane.getChildren().clear();
-        Scene scene = new Scene(pane);
-        Stage stage = (Stage) this.pane.getScene().getWindow();
-        stage.setTitle("Register");
-        stage.setScene(scene);
+        this.pane.getChildren().add(rootNode);
     }
 
 
